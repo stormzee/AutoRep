@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.header{
+    width: 80%;
+    text-align: center;
+}
+
+.sch_name{
+    width: 50%;
+    float: right;
+    margin-top: 2rem;
+    margin-right: 7rem;
+}
+.sch_logo {
+    width: 20%; 
+}
+.content {
+   width: 80%;
+   margin: auto;
+}
+
+.student_name{
+    margin-top: 1.5rem;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+}
+
+.agg_data_left{
+    float: left;
+    margin-left: 4rem;
+    margin-top: 2rem;
+}
+
+.agg_data_right{
+    float:right;
+    margin-right: 4rem;
+    margin-top: 2rem;
+}
+
+h1 {
+    color: #333;
+}
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+th, td {
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #f2f2f2;
+}
+.student_photo {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+.remarks{
+    padding: 1rem;
+}
+
+.remarks > p{
+    padding: 1rem;
+}
+
+
+
