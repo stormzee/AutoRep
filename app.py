@@ -1,6 +1,8 @@
-import tkinter as tk
-# import subprocess
 import os
+import tkinter as tk
+from tkinter import filedialog
+import shutil
+# import subprocess
 import pandas as pd
 import numpy as np
 import pdfkit
@@ -307,7 +309,22 @@ def run_script():
     os.remove(combined_html_path)
 
 
+def upload_data():
+    file_path = filedialog.askopenfilename()
+    if file_path:
+        # Get the file name from the full path
+        file_name = os.path.basename(file_path)
+        
+        # Specify the destination directory (current directory)
+        destination_directory = os.getcwd()
+        
+        # Construct the destination file path
+        destination_file_path = os.path.join(destination_directory, file_name)
+        
+        # Copy the file to the destination directory
+        shutil.copyfile(file_path, destination_file_path)
 
+        # print("Uploaded file:", file_path)
 
 
 
@@ -315,7 +332,12 @@ def run_script():
 root = tk.Tk()
 root.title("App")
 
-button = tk.Button(root, text="Generate Report", command=run_script )
-button.pack()
+# Button for generating report
+generate_report_button = tk.Button(root, text="Generate Report", command=run_script )
+generate_report_button.pack()
+
+# Create a button for uploading data
+upload_button = tk.Button(root, text="Upload Data", command=upload_data)
+upload_button.pack(pady=10)
 
 root.mainloop()
