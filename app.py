@@ -208,9 +208,12 @@ def run_script():
 
     # Custom HTML template path
     html_template_path = 'student_results_template.html'
+      # Output PDF path
+    pdf_output_path = f"{class_name}_students_report.pdf"
 
-    # Output PDF path
-    pdf_output_path = f"{class_name}_students_results.pdf"
+    # Get the desktop path of the machine
+    desktop_path = os.path.join(os.path.expanduser('~/OneDrive'), f'Desktop/{pdf_output_path}').replace('/',os.sep)
+
 
     # Create a Jinja2 environment
     env = Environment(loader=FileSystemLoader('.'))
@@ -301,9 +304,10 @@ def run_script():
         html_file.write(combined_html)
 
     # Generate a single PDF from the combined HTML
-    pdfkit.from_file(combined_html_path, pdf_output_path, configuration=wkhtml_path, options={"enable-local-file-access": ""})
+    pdfkit.from_file(combined_html_path, desktop_path, configuration=wkhtml_path, options={"enable-local-file-access": ""})
 
     # print(f'PDF generated: {pdf_output_path}')
+    generate_message.config(text=f"'{pdf_output_path}' generated successfully.")
 
     # Optional: Delete the temporary combined HTML file
     os.remove(combined_html_path)
@@ -326,18 +330,50 @@ def upload_data():
 
         # print("Uploaded file:", file_path)
 
+        # Update the label text to show the filename uploaded successfully
+        upload_message.config(text=f"{file_name} uploaded successfully.")
+
 
 
 
 root = tk.Tk()
-root.title("App")
+root.title("AutoRep")
+
+# Set the window size
+window_width = 600
+window_height = 400
+root.geometry(f"{window_width}x{window_height}")
+
+# Create a frame as a container
+frame = tk.Frame(root)
+frame.pack(padx=20, pady=20)
+
+# Welcom text
+welcome_text = tk.Label(frame, text="Welcome to the Student Results Report Generator App")
+welcome_text.pack(padx= 20, pady=10)
+
+# Description text
+description_text = tk.Label(frame, text="Kindly upload the Excel data file by clicking on 'Upload Excel Data'.", justify="center", anchor="center")
+description_text.pack()
+
+# 
+description_text2 = tk.Label(frame, text="Next click on the 'Generate Report' button to generate the PDF report.", justify="center", anchor="center")
+description_text2.pack()
 
 # Button for generating report
 generate_report_button = tk.Button(root, text="Generate Report", command=run_script )
-generate_report_button.pack()
+generate_report_button.pack(side=tk.LEFT, padx=120, pady=0)
 
 # Create a button for uploading data
-upload_button = tk.Button(root, text="Upload Data", command=upload_data)
-upload_button.pack(pady=10)
+upload_button = tk.Button(root, text="Upload Excel Data", command=upload_data)
+upload_button.pack(side=tk.LEFT, padx=0, pady=0)
+
+# Create a label to display the message for uploading data
+upload_message = tk.Label(frame, text="", justify="center", anchor="center")
+upload_message.pack(pady=30)
+
+# Create a lable to display the message for generating report
+generate_message = tk.Label(frame, text="", justify="center", anchor="center")
+generate_message.pack(pady=30)
 
 root.mainloop()

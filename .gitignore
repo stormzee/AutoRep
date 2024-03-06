@@ -1,0 +1,5 @@
+.ipynb_checkpoints
+/autorep
+/build
+/__pycache__
+app.spec
