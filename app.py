@@ -211,7 +211,7 @@ def run_script():
     pdf_output_path = f"{class_name}_students_report.pdf"
 
     # Get the desktop path of the machine
-    desktop_path = os.path.join(os.path.expanduser('~/OneDrive'), f'Desktop/{pdf_output_path}').replace('/',os.sep)
+    desktop_path = os.path.join(os.path.expanduser('~'), f'Desktop/{pdf_output_path}').replace('/',os.sep)
 
 
     # Create a Jinja2 environment
