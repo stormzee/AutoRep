@@ -56,7 +56,6 @@ def run_script():
     # # Start calculating the extra fields such as the totals for each subject.
     # ## english_total, math_total, science_total and for all subjects calculate the total
 
-
     df['english_total'] = df['english_class']+df['english_exam']
     df['math_total'] = df['math_class']+df['math_exam']
     df['science_total'] = df['science_class']+df['science_exam']
@@ -311,7 +310,9 @@ def run_script():
 
     # Optional: Delete the temporary combined HTML file
     os.remove(combined_html_path)
-
+    
+    # Remove excel file
+    os.remove(result_sheet)  
 
 def upload_data():
     file_path = filedialog.askopenfilename()
